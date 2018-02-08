@@ -34,9 +34,9 @@ Go to `Settings` (upper right) > `Developer settings` > `New OAuth App`
 
 ### Update your max file size
 
-You can update your `post_max_size` and `upload_max_filesize` to upload your bigger file. ([Git files soft limit is 50M](https://help.github.com/articles/conditions-for-large-files/))
+You can update your `post_max_size` and `upload_max_filesize` ini settings to upload bigger files. ([Git files soft limit is 50M](https://help.github.com/articles/conditions-for-large-files/))
 
-Retriieve `post_max_size` and `upload_max_filesize` values :
+Retrieve `post_max_size` and `upload_max_filesize` values :
 
     php -r 'echo ini_get("post_max_size") . "\n";'
     php -r 'echo ini_get("upload_max_filesize") . "\n";'
