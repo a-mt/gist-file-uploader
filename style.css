@@ -1,0 +1,125 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+.container {
+  width: 1012px;
+  max-width: calc(100vw - 10px);
+  margin: 0 auto;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+h1 {
+  padding-top: 10px;
+  padding-bottom: 8px;
+  color: white;
+  background-color: #24292e;
+  margin: 0;
+  font-size: 1.5em;
+  font-weight: 300;
+  letter-spacing: -0.2px;
+}
+h1 strong {
+  font-weight: 700;
+}
+.form {
+  padding-top: 30px;
+}
+.form div {
+  margin-bottom: 10px;
+}
+#login {
+  padding: 0;
+  position: relative;
+  top: -3.1em;
+  display: inline;
+}
+#login form {
+  display: inline;
+}
+#login .btn {
+  background: royalblue;
+  color: white;
+}
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  line-height: 20px;
+  color: #24292e;
+  vertical-align: middle;
+  background-color: #fafbfc;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  outline: none;
+  box-shadow: inset 0 1px 2px rgba(27,31,35,0.075);
+}
+.file-header {
+  padding: 5px 10px;
+  background-color: #fafbfc;
+  border: 1px solid #e1e4e8;
+  border-radius: 2px;
+}
+.actions {
+  text-align: right;
+}
+.btn + .btn {
+  margin-right: 5px;
+}
+.btn {
+  color: #24292e;
+  display: inline-block;
+  padding: 6px 12px;
+  font-weight: 600;
+  line-height: 20px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid rgba(27,31,35,0.2);
+  border-radius: 0.25em;
+}
+.btn-secret {
+  background-color: #e6e1c0;
+  background-image: linear-gradient(#fffad5, #e6e1c0);
+  border-color: #e3deb9;
+}
+.btn-secret[disabled] {
+  color: rgba(102,102,102,0.5);
+  background-color: #e6e1c0;
+  background-image: linear-gradient(#fffad5, #e6e1c0);
+  border-color: #e3deb9;
+}
+.btn-gist {
+  background-color: #eff3f6;
+  background-image: linear-gradient(-180deg, #fafbfc 0%, #eff3f6 90%);
+}
+.btn-gist[disabled] {
+  color: rgba(36,41,46,0.4);
+  background-color: #eff3f6;
+  background-image: none;
+  border-color: rgba(27,31,35,0.2);
+}
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.alert-danger {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+small {
+  opacity: 0.7;
+}
