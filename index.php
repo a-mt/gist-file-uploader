@@ -160,7 +160,7 @@ if(isset($_SESSION["token"]) && isset($_FILES["file"])) {
                     'git config user.email `git log -1 --pretty=format:\'%ae\'`',
                     'git add "' . $fileinfo['name'] . '"',
                     'GIT_TRACE=1 git commit -m "Update file content"',
-                    'GIT_TRACE=1 git push origin master'
+                    'GIT_TRACE=1 git push origin main'
                 ]);
                 chdir('/tmp');
 
