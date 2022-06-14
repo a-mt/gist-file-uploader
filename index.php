@@ -24,20 +24,35 @@ if(isset($_POST["login"])) {
 }
 
 // Check token is valid
+// https://developer.github.com/changes/2020-02-14-deprecating-oauth-app-endpoint/
 if(isset($_SESSION["token"]) && !isset($_SESSION["username"])) {
-    $c = curl_init('https://api.github.com/applications/' . CLIENT_ID . '/tokens/' . $_SESSION["token"]);
+    $c = curl_init('https://api.github.com/applications/' . CLIENT_ID . '/token');
 
-    curl_setopt($c, CURLOPT_HTTPHEADER, array('User-Agent: File uploader'));
+    $data = json_encode([
+      "access_token" => $_SESSION["token"]
+    ]);
+
+    curl_setopt($c, CURLOPT_HTTPHEADER, array(
+      'User-Agent: File uploader',
+    ));
     curl_setopt($c, CURLOPT_USERPWD, CLIENT_ID . ":" . CLIENT_SECRET);
     curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_CUSTOMREQUEST, 'PATCH');
+    curl_setopt($c, CURLOPT_POSTFIELDS, $data);
+
     if($response = curl_exec($c)) {
+        //$status = curl_getinfo($c, CURLINFO_HTTP_CODE);
         $json = json_decode($response, true);
 
         if(isset($json["user"])) {
             $_SESSION["username"] = $json["user"]["login"];
+            $_SESSION["token"] = $json["token"];
         } else {
             unset($_SESSION["token"]);
         }
+    } else {
+      echo 'Something went wrong';
+      echo curl_error($c);
     }
 }
 
@@ -78,7 +93,7 @@ if(isset($_SESSION["token"]) && isset($_FILES["file"])) {
         case UPLOAD_ERR_EXTENSION:  $err = "File extension not accepted."; break;
     }
     if($err) {
-        $_SESSION['error'] = $error;
+        $_SESSION['error'] = $err;
     } else {
 
         // Submit gist
@@ -98,10 +113,14 @@ if(isset($_SESSION["token"]) && isset($_FILES["file"])) {
         curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
 
         if(isset($_SESSION["token"])) {
-            curl_setopt($c, CURLOPT_HTTPHEADER, array('User-Agent: File uploader', 'Authorization: token ' . $_SESSION["token"]));
+            curl_setopt($c, CURLOPT_HTTPHEADER, array(
+              'User-Agent: File uploader',
+              'Authorization: token ' . $_SESSION["token"]
+            ));
         }
 
         $response = curl_exec($c);
+
         if(!$response) {
             echo curl_error($c);
             die;
